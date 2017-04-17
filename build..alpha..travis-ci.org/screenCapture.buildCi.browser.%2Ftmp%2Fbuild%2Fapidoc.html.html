@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="http://github.com/gratimax/gulp-grunt"
-
-    >gulp-grunt (v0.5.5)</a>
+    <a href="http://github.com/gratimax/gulp-grunt">gulp-grunt (v0.5.5)</a>
 </h1>
 <h4>Run grunt tasks from gulp</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.gulp-grunt">module gulp-grunt</a><ol>
 
@@ -160,7 +153,7 @@
 
   grunt.file.setBase(cwd);
 
-  var gruntCliDir = opt.base ? (opt.base + &#x22;/&#x22;) : &#x22;&#x22;;
+  var gruntCliDir = opt.base ? (opt.base + "/") : "";
 
   grunt.task.init([]);
 
@@ -172,12 +165,12 @@
   var registerGruntTask = function (name) {
     finalTasks[opt.prefix + name] = function (cb) {
       if (opt.verbose) {
-        console.log(&#x27;[grunt-gulp] Running Grunt &#x22;&#x27; + name + &#x27;&#x22; task...&#x27;);
+        console.log('[grunt-gulp] Running Grunt "' + name + '" task...');
       }
-      var args = opt.force ?  [name, &#x27;--force&#x27;, &#x27;--verbose=&#x27; + opt.verbose] : [name, &#x27;--verbose=&#x27; + opt.verbose];
+      var args = opt.force ?  [name, '--force', '--verbose=' + opt.verbose] : [name, '--verbose=' + opt.verbose];
       for (var key in opt) {
-        if (key != &#x27;base&#x27; &#x26;&#x26; key != &#x27;prefix&#x27;) {
-          args = args.concat(&#x27;--&#x27; + key + &#x27;=&#x27; + opt[key]);
+        if (key != 'base' &amp;&amp; key != 'prefix') {
+          args = args.concat('--' + key + '=' + opt[key]);
         }
       }
       var child = spawn(
@@ -185,18 +178,18 @@
         args,
         {cwd: cwd}
       );
-      child.stdout.on(&#x27;data&#x27;, function (d) {
+      child.stdout.on('data', function (d) {
         grunt.log.write(d);
       });
-      child.stderr.on(&#x27;data&#x27;, function (d) {
+      child.stderr.on('data', function (d) {
         grunt.log.error(d);
       });
-      child.on(&#x27;close&#x27;, function (code) {
+      child.on('close', function (code) {
         if (opt.verbose) {
-          grunt.log.ok(&#x27;[grunt-gulp] Done running Grunt &#x22;&#x27; + name + &#x27;&#x22; task.&#x27;);
+          grunt.log.ok('[grunt-gulp] Done running Grunt "' + name + '" task.');
         }
         if (code != 0) {
-    	     grunt.fail.warn(&#x27;[grunt-gulp] Failed running Grunt &#x22;&#x27; + name + &#x27;&#x22; task.&#x27;)
+    	     grunt.fail.warn('[grunt-gulp] Failed running Grunt "' + name + '" task.')
     	  }
         cb();
       });
@@ -209,7 +202,7 @@
       registerGruntTask(name);
       // also add target-specific tasks
       for (var target in grunt.config.get(name)) {
-        registerGruntTask(name + &#x27;:&#x27; + target);
+        registerGruntTask(name + ':' + target);
       }
     }
   }
@@ -218,7 +211,7 @@
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   base: null, // this is just the directory that your Gulpfile is in
-  prefix: &#x27;grunt-&#x27;,
+  prefix: 'grunt-',
   verbose: false,
   force: true
 }
@@ -230,7 +223,7 @@ __Takes__ `(options)`
 This just returns all the grunt tasks found, along with their associated functions.
 Calling is essentially the same as with the main function:
 ```js
-var gulp_grunt = require(&#x27;gulp-grunt&#x27;)
+var gulp_grunt = require('gulp-grunt')
 var tasks = gulp_grunt.tasks({
 ...</pre></li>
     </ul>
@@ -272,7 +265,7 @@ var tasks = gulp_grunt.tasks({
 
   grunt.file.setBase(cwd);
 
-  var gruntCliDir = opt.base ? (opt.base + &#x22;/&#x22;) : &#x22;&#x22;;
+  var gruntCliDir = opt.base ? (opt.base + "/") : "";
 
   grunt.task.init([]);
 
@@ -284,12 +277,12 @@ var tasks = gulp_grunt.tasks({
   var registerGruntTask = function (name) {
     finalTasks[opt.prefix + name] = function (cb) {
       if (opt.verbose) {
-        console.log(&#x27;[grunt-gulp] Running Grunt &#x22;&#x27; + name + &#x27;&#x22; task...&#x27;);
+        console.log('[grunt-gulp] Running Grunt "' + name + '" task...');
       }
-      var args = opt.force ?  [name, &#x27;--force&#x27;, &#x27;--verbose=&#x27; + opt.verbose] : [name, &#x27;--verbose=&#x27; + opt.verbose];
+      var args = opt.force ?  [name, '--force', '--verbose=' + opt.verbose] : [name, '--verbose=' + opt.verbose];
       for (var key in opt) {
-        if (key != &#x27;base&#x27; &#x26;&#x26; key != &#x27;prefix&#x27;) {
-          args = args.concat(&#x27;--&#x27; + key + &#x27;=&#x27; + opt[key]);
+        if (key != 'base' &amp;&amp; key != 'prefix') {
+          args = args.concat('--' + key + '=' + opt[key]);
         }
       }
       var child = spawn(
@@ -297,18 +290,18 @@ var tasks = gulp_grunt.tasks({
         args,
         {cwd: cwd}
       );
-      child.stdout.on(&#x27;data&#x27;, function (d) {
+      child.stdout.on('data', function (d) {
         grunt.log.write(d);
       });
-      child.stderr.on(&#x27;data&#x27;, function (d) {
+      child.stderr.on('data', function (d) {
         grunt.log.error(d);
       });
-      child.on(&#x27;close&#x27;, function (code) {
+      child.on('close', function (code) {
         if (opt.verbose) {
-          grunt.log.ok(&#x27;[grunt-gulp] Done running Grunt &#x22;&#x27; + name + &#x27;&#x22; task.&#x27;);
+          grunt.log.ok('[grunt-gulp] Done running Grunt "' + name + '" task.');
         }
         if (code != 0) {
-    	     grunt.fail.warn(&#x27;[grunt-gulp] Failed running Grunt &#x22;&#x27; + name + &#x27;&#x22; task.&#x27;)
+    	     grunt.fail.warn('[grunt-gulp] Failed running Grunt "' + name + '" task.')
     	  }
         cb();
       });
@@ -321,7 +314,7 @@ var tasks = gulp_grunt.tasks({
       registerGruntTask(name);
       // also add target-specific tasks
       for (var target in grunt.config.get(name)) {
-        registerGruntTask(name + &#x27;:&#x27; + target);
+        registerGruntTask(name + ':' + target);
       }
     }
   }
@@ -330,7 +323,7 @@ var tasks = gulp_grunt.tasks({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   base: null, // this is just the directory that your Gulpfile is in
-  prefix: &#x27;grunt-&#x27;,
+  prefix: 'grunt-',
   verbose: false,
   force: true
 }
@@ -342,7 +335,7 @@ __Takes__ `(options)`
 This just returns all the grunt tasks found, along with their associated functions.
 Calling is essentially the same as with the main function:
 ```js
-var gulp_grunt = require(&#x27;gulp-grunt&#x27;)
+var gulp_grunt = require('gulp-grunt')
 var tasks = gulp_grunt.tasks({
 ...</pre></li>
     </ul>
@@ -374,3 +367,4 @@ var tasks = gulp_grunt.tasks({
     ]
 </div>
 </div>
+</body></html>
