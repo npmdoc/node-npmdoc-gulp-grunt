@@ -1,9 +1,11 @@
 # api documentation for  [gulp-grunt (v0.5.5)](http://github.com/gratimax/gulp-grunt)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-grunt.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-grunt) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-grunt.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-grunt)
 #### Run grunt tasks from gulp
 
-[![NPM](https://nodei.co/npm/gulp-grunt.png?downloads=true)](https://www.npmjs.com/package/gulp-grunt)
+[![NPM](https://nodei.co/npm/gulp-grunt.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/gulp-grunt)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-gulp-grunt/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-gulp-grunt_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-gulp-grunt/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-gulp-grunt/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-gulp-grunt/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-gulp-grunt/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-gulp-grunt/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-gulp-grunt/build/screenCapture.npmPackageListing.svg)
 
@@ -17,8 +19,7 @@
 
 {
     "author": {
-        "name": "gratimax",
-        "email": "max@ovsankin.com"
+        "name": "gratimax"
     },
     "bugs": {
         "url": "https://github.com/gratimax/gulp-grunt/issues"
@@ -51,13 +52,11 @@
     "main": "./index.js",
     "maintainers": [
         {
-            "name": "gratimax",
-            "email": "max@ovsankin.com"
+            "name": "gratimax"
         }
     ],
     "name": "gulp-grunt",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/gratimax/gulp-grunt.git"
@@ -67,106 +66,6 @@
     },
     "version": "0.5.5"
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module gulp-grunt](#apidoc.module.gulp-grunt)
-1.  [function <span class="apidocSignatureSpan">gulp-grunt.</span>tasks (options)](#apidoc.element.gulp-grunt.tasks)
-
-
-
-# <a name="apidoc.module.gulp-grunt"></a>[module gulp-grunt](#apidoc.module.gulp-grunt)
-
-#### <a name="apidoc.element.gulp-grunt.tasks"></a>[function <span class="apidocSignatureSpan">gulp-grunt.</span>tasks (options)](#apidoc.element.gulp-grunt.tasks)
-- description and source-code
-```javascript
-tasks = function (options) {
-  var opt = makeOptions(options);
-
-  var oldCwd = process.cwd();
-  var cwd = opt.base != null ? opt.base : oldCwd;
-
-  grunt.file.setBase(cwd);
-
-  var gruntCliDir = opt.base ? (opt.base + "/") : "";
-
-  grunt.task.init([]);
-
-  process.chdir(oldCwd);
-
-  var gruntTasks = grunt.task._tasks,
-    finalTasks = {};
-
-  var registerGruntTask = function (name) {
-    finalTasks[opt.prefix + name] = function (cb) {
-      if (opt.verbose) {
-        console.log('[grunt-gulp] Running Grunt "' + name + '" task...');
-      }
-      var args = opt.force ?  [name, '--force', '--verbose=' + opt.verbose] : [name, '--verbose=' + opt.verbose];
-      for (var key in opt) {
-        if (key != 'base' && key != 'prefix') {
-          args = args.concat('--' + key + '=' + opt[key]);
-        }
-      }
-      var child = spawn(
-        gruntCliDir + gruntCmd,
-        args,
-        {cwd: cwd}
-      );
-      child.stdout.on('data', function (d) {
-        grunt.log.write(d);
-      });
-      child.stderr.on('data', function (d) {
-        grunt.log.error(d);
-      });
-      child.on('close', function (code) {
-        if (opt.verbose) {
-          grunt.log.ok('[grunt-gulp] Done running Grunt "' + name + '" task.');
-        }
-        if (code != 0) {
-    	     grunt.fail.warn('[grunt-gulp] Failed running Grunt "' + name + '" task.')
-    	  }
-        cb();
-      });
-    };
-  }
-
-  for (var name in gruntTasks) {
-    if (gruntTasks.hasOwnProperty(name)) {
-      // add tasks
-      registerGruntTask(name);
-      // also add target-specific tasks
-      for (var target in grunt.config.get(name)) {
-        registerGruntTask(name + ':' + target);
-      }
-    }
-  }
-
-  return finalTasks;
-}
-```
-- example usage
-```shell
-...
-  base: null, // this is just the directory that your Gulpfile is in
-  prefix: 'grunt-',
-  verbose: false,
-  force: true
-}
-'''
-
-### gulp-grunt.tasks()
-__Takes__ '(options)'
-
-This just returns all the grunt tasks found, along with their associated functions.
-Calling is essentially the same as with the main function:
-'''js
-var gulp_grunt = require('gulp-grunt')
-var tasks = gulp_grunt.tasks({
-...
 ```
 
 
