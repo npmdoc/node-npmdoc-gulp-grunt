@@ -1,4 +1,7 @@
-# api documentation for  [gulp-grunt (v0.5.5)](http://github.com/gratimax/gulp-grunt)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-grunt.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-grunt) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-grunt.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-grunt)
+# npmdoc-gulp-grunt
+
+#### basic api documentation for  [gulp-grunt (v0.5.5)](http://github.com/gratimax/gulp-grunt)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-grunt.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-grunt) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-grunt.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-grunt)
+
 #### Run grunt tasks from gulp
 
 [![NPM](https://nodei.co/npm/gulp-grunt.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/gulp-grunt)
@@ -64,7 +67,8 @@
     "scripts": {
         "test": "mocha -R spec"
     },
-    "version": "0.5.5"
+    "version": "0.5.5",
+    "bin": {}
 }
 ```
 
